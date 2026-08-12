@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GovDirect - Unified Public Digital Services Portal</title>
+    <meta name="description" content="Official responsive digital service portal providing citizens with fast, accessible access to driver licensing, business registration, grants, and civic permits.">
+    <!-- Google Fonts: Inter for typography excellence -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- ACCESSIBILITY CONTROL TOOLBAR (TOP FIXED BAR) -->
+    <aside class="accessibility-bar" aria-label="Accessibility Settings Bar">
+        <div class="container acc-flex">
+            <div class="acc-controls">
+                <span class="acc-label">⚡ Universal Accessibility Controls:</span>
+                <!-- Text Resizing -->
+                <button id="btn-font-sub" class="acc-btn" aria-label="Decrease Font Size">A-</button>
+                <button id="btn-font-reset" class="acc-btn" aria-label="Reset Font Size">100%</button>
+                <button id="btn-font-add" class="acc-btn" aria-label="Increase Font Size">A+</button>
+                <!-- High Contrast Toggle -->
+                <button id="btn-contrast-toggle" class="acc-btn acc-highlight" aria-label="Toggle High Contrast Dark Mode">
+                    <span id="contrast-icon">🌙</span> Dark Contrast
+                </button>
+                <!-- Motion Reduction -->
+                <button id="btn-motion-toggle" class="acc-btn" aria-label="Toggle Motion Reduction">
+                    <span id="motion-icon">✨</span> Reduce Motion
+                </button>
+                <!-- Screen Reader Audio Simulator -->
+                <button id="btn-tts-toggle" class="acc-btn acc-audio" aria-label="Toggle Screen Reader Voice Assistant">
+                    🔊 Text-to-Speech Preview
+                </button>
+            </div>
+            <div class="acc-status">
+                <span class="wcag-badge">WCAG 2.1 AAA Compliant</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- HEADER NAVIGATION BAR -->
+    <header class="main-header" role="banner">
+        <div class="container nav-container">
+            <a href="#" class="brand-logo" aria-label="GovDirect Home Page">
+                <span class="logo-emblem">🏛️</span>
+                <div class="logo-text">
+                    <span class="brand-title">GovDirect</span>
+                    <span class="brand-sub">Public Services Portal</span>
+                </div>
+            </a>
+
+            <nav class="nav-links" id="main-nav" role="navigation" aria-label="Main Navigation">
+                <a href="#services-catalog" class="nav-item active">Services Catalog</a>
+                <a href="#tracking-section" class="nav-item">Application Tracker</a>
+                <a href="#design-system" class="nav-item">Design Architecture</a>
+                <a href="#accessibility-audit" class="nav-item">Accessibility Audit</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="btn btn-outline" id="btn-open-tracker" aria-haspopup="dialog">
+                    🔎 Track Reference ID
+                </button>
+                <button class="mobile-menu-toggle" id="btn-mobile-menu" aria-label="Open Navigation Menu" aria-expanded="false">
+                    ☰
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" role="main">
+        <!-- HERO & DYNAMIC SEARCH SECTION -->
+        <section class="hero-section">
+            <div class="container hero-content">
+                <div class="hero-text-block">
+                    <span class="hero-pill">Official E-Governance Gateway</span>
+                    <h1 class="hero-title">Accessible Digital Services for Every Citizen</h1>
+                    <p class="hero-subtitle">Fast, transparent, and seamless online applications for driver renewal, commercial licensing, property assessment, and healthcare grants.</p>
+                </div>
+
+                <!-- Interactive Search & Action Bar -->
+                <div class="search-widget" role="search">
+                    <div class="search-input-wrapper">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="service-search-input" placeholder="Search services (e.g., 'Driver License', 'Business Permit', 'Tax')..." aria-label="Search Government Services">
+                        <button class="btn btn-primary" id="btn-search-trigger">Search Catalog</button>
+                    </div>
+
+                    <!-- Quick Action Chips -->
+                    <div class="quick-chips">
+                        <span class="chip-label">Popular Actions:</span>
+                        <button class="chip" data-filter="Driver License">🚗 Driver License</button>
+                        <button class="chip" data-filter="Business">💼 Business Permits</button>
+                        <button class="chip" data-filter="Healthcare">🏥 Health Grants</button>
+                        <button class="chip" data-filter="Property">🏠 Property Taxes</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES CATALOG SECTION -->
+        <section id="services-catalog" class="services-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-title-wrap">
+                        <h2>Public Services Catalog</h2>
+                        <p>Browse digital services, inspect processing SLA turnaround times, and submit verified applications online.</p>
+                    </div>
+
+                    <!-- Category Filter Buttons -->
+                    <div class="category-filters" role="tablist" aria-label="Service Category Filters">
+                        <button class="filter-tab active" data-category="all" role="tab" aria-selected="true">All Services (6)</button>
+                        <button class="filter-tab" data-category="Identity" role="tab">Identity & Licensing</button>
+                        <button class="filter-tab" data-category="Business" role="tab">Business & Permits</button>
+                        <button class="filter-tab" data-category="Healthcare" role="tab">Healthcare & Welfare</button>
+                        <button class="filter-tab" data-category="Housing" role="tab">Housing & Tax</button>
+                    </div>
+                </div>
+
+                <!-- Dynamic Grid Container -->
+                <div class="services-grid" id="services-container">
+                    <!-- Service cards rendered via JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- REAL-TIME TRACKING SECTION -->
+        <section id="tracking-section" class="tracking-section">
+            <div class="container">
+                <div class="tracking-card">
+                    <div class="tracking-header">
+                        <h2>Live Application Tracker</h2>
+                        <p>Enter your 12-digit reference ID (e.g., <strong>GOV-2026-8942</strong>) to verify your application status in real-time.</p>
+                    </div>
+
+                    <div class="tracking-input-group">
+                        <input type="text" id="track-id-input" placeholder="e.g., GOV-2026-8942" aria-label="Application Reference Number">
+                        <button class="btn btn-secondary" id="btn-track-submit">Check Status</button>
+                    </div>
+
+                    <!-- Result Status Timeline -->
+                    <div class="tracking-result-box hidden" id="tracking-result">
+                        <div class="tracking-info-header">
+                            <div>
+                                <span class="ref-title" id="res-service-name">Driver License Renewal</span>
+                                <div class="ref-code">Ref ID: <span id="res-ref-code">GOV-2026-8942</span></div>
+                            </div>
+                            <span class="status-badge badge-active" id="res-status-badge">In Verification</span>
+                        </div>
+
+                        <!-- Progress Steps -->
+                        <div class="timeline-stepper">
+                            <div class="timeline-step step-complete">
+                                <div class="step-icon">✓</div>
+                                <div class="step-content">
+                                    <span class="step-title">Submitted</span>
+                                    <span class="step-time">Aug 10, 2026 - 10:15 AM</span>
+                                </div>
+                            </div>
+                            <div class="timeline-step step-active">
+                                <div class="step-icon">🔄</div>
+                                <div class="step-content">
+                                    <span class="step-title">Identity Verification</span>
+                                    <span class="step-time">Aug 11, 2026 - 02:30 PM</span>
+                                </div>
+                            </div>
+                            <div class="timeline-step step-pending">
+                                <div class="step-icon">⏱️</div>
+                                <div class="step-content">
+                                    <span class="step-title">Department Approval</span>
+                                    <span class="step-time">Estimated SLA: 1 Day</span>
+                                </div>
+                            </div>
+                            <div class="timeline-step step-pending">
+                                <div class="step-icon">🪪</div>
+                                <div class="step-content">
+                                    <span class="step-title">Digital Issue</span>
+                                    <span class="step-time">Pending Final Signoff</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DESIGN SYSTEM & ACCESSIBILITY AUDIT SECTION -->
+        <section id="design-system" class="design-system-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Design Architecture & Heuristics</h2>
+                    <p>Documenting design choices, color contrast compliance, and responsive breakpoint rules.</p>
+                </div>
+
+                <div class="ds-grid">
+                    <!-- Card 1: Design Tokens -->
+                    <div class="ds-card">
+                        <h3>🎨 Design Tokens & Palette</h3>
+                        <p>Built with CSS custom variables, providing WCAG 2.1 AAA color contrast ratios (18.5:1 text contrast).</p>
+                        <div class="swatch-list">
+                            <div class="swatch-item">
+                                <span class="swatch-box" style="background:#0f172a"></span>
+                                <span>Gov Navy (#0f172a)</span>
+                            </div>
+                            <div class="swatch-item">
+                                <span class="swatch-box" style="background:#2563eb"></span>
+                                <span>Civic Blue (#2563eb)</span>
+                            </div>
+                            <div class="swatch-item">
+                                <span class="swatch-box" style="background:#f8fafc"></span>
+                                <span>Slate Light (#f8fafc)</span>
+                            </div>
+                            <div class="swatch-item">
+                                <span class="swatch-box" style="background:#16a34a"></span>
+                                <span>Verified Green (#16a34a)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Responsive Breakpoints -->
+                    <div class="ds-card">
+                        <h3>📱 Responsive Fluid Grid</h3>
+                        <p>Adapts seamlessly from mobile devices to ultrawide desktop monitors using fluid typography `clamp()` and auto-fit CSS Grid.</p>
+                        <ul class="ds-list">
+                            <li><strong>Mobile (320px - 767px):</strong> 1-Column stacked view, sticky bottom nav, touch targets >= 48px.</li>
+                            <li><strong>Tablet (768px - 1023px):</strong> 2-Column fluid grid, collapsed top bar, expandable filters.</li>
+                            <li><strong>Desktop (1024px+):</strong> 3-Column service cards grid, persistent accessibility toolbar.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 3: Accessibility Matrix -->
+                    <div class="ds-card" id="accessibility-audit">
+                        <h3>♿ Accessibility & Inclusion</h3>
+                        <p>Fully compliant with government universal web standards and Section 508 accessibility guidelines.</p>
+                        <ul class="ds-list">
+                            <li><strong>ARIA Live Regions:</strong> Instant screen reader alerts for form validation errors.</li>
+                            <li><strong>Keyboard Navigation:</strong> Complete tab sequence with 3px solid focus indicators.</li>
+                            <li><strong>Font Resizing:</strong> Dynamic scale without layout horizontal breaking.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- INTERACTIVE MULTI-STEP APPLICATION MODAL -->
+    <div class="modal-overlay hidden" id="application-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h3 id="modal-title">Service Application Form</h3>
+                    <span class="modal-subtitle" id="modal-service-subtitle">Driver License Renewal</span>
+                </div>
+                <button class="modal-close" id="btn-close-modal" aria-label="Close Modal Window">✖</button>
+            </div>
+
+            <!-- Stepper Bar -->
+            <div class="modal-stepper">
+                <div class="modal-step active" id="step-tab-1">1. Applicant Info</div>
+                <div class="modal-step" id="step-tab-2">2. Documents</div>
+                <div class="modal-step" id="step-tab-3">3. Review & Sign</div>
+            </div>
+
+            <form id="service-app-form" class="modal-body" novalidate>
+                <!-- STEP 1: APPLICANT DETAILS -->
+                <div class="form-step-panel" id="step-panel-1">
+                    <div class="form-group">
+                        <label for="app-fullname">Full Legal Name *</label>
+                        <input type="text" id="app-fullname" class="form-input" required placeholder="e.g., Eleanor Vance">
+                        <span class="field-error" id="err-fullname"></span>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="app-id">National ID / SSN *</label>
+                            <input type="text" id="app-id" class="form-input" required placeholder="e.g., GOV-987-6543">
+                            <span class="field-error" id="err-id"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="app-phone">Mobile Phone *</label>
+                            <input type="tel" id="app-phone" class="form-input" required placeholder="e.g., +1 555-0199">
+                            <span class="field-error" id="err-phone"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="app-email">Email Address *</label>
+                        <input type="email" id="app-email" class="form-input" required placeholder="e.g., eleanor@gov.example">
+                        <span class="field-error" id="err-email"></span>
+                    </div>
+                </div>
+
+                <!-- STEP 2: DOCUMENTS -->
+                <div class="form-step-panel hidden" id="step-panel-2">
+                    <div class="form-group">
+                        <label>Upload Identification Document (PDF/JPG, Max 10MB) *</label>
+                        <div class="file-dropzone" id="file-dropzone">
+                            <span class="dz-icon">📄</span>
+                            <span class="dz-text">Drag & drop passport scan or click to browse</span>
+                            <input type="file" id="app-file" class="hidden-file-input" accept=".pdf,.jpg,.png">
+                            <span class="dz-file-name" id="dz-file-name"></span>
+                        </div>
+                        <span class="field-error" id="err-file"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="app-notes">Special Remarks / Accessibility Requirements</label>
+                        <textarea id="app-notes" class="form-textarea" rows="3" placeholder="Optional notes for handling officer..."></textarea>
+                    </div>
+                </div>
+
+                <!-- STEP 3: REVIEW & SIGN -->
+                <div class="form-step-panel hidden" id="step-panel-3">
+                    <div class="review-box">
+                        <h4>Application Summary Confirmation</h4>
+                        <p><strong>Applicant:</strong> <span id="rev-name">-</span></p>
+                        <p><strong>National ID:</strong> <span id="rev-id">-</span></p>
+                        <p><strong>Contact Email:</strong> <span id="rev-email">-</span></p>
+                        <p><strong>Selected Service:</strong> <span id="rev-service">-</span></p>
+                    </div>
+
+                    <div class="form-group margin-top">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="app-declaration" required>
+                            <span>I certify under penalty of law that all provided information is accurate and legally binding. *</span>
+                        </label>
+                        <span class="field-error" id="err-declaration"></span>
+                    </div>
+                </div>
+
+                <!-- MODAL FOOTER BUTTONS -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline hidden" id="btn-prev-step">Back</button>
+                    <button type="button" class="btn btn-primary" id="btn-next-step">Proceed to Step 2 ➔</button>
+                    <button type="submit" class="btn btn-success hidden" id="btn-submit-app">Submit Application ✓</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- LIVE AUDIO FEEDBACK TOAST (ACCESSIBILITY ANNOUNCER) -->
+    <div id="aria-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+    <div id="toast-notification" class="toast hidden"></div>
+
+    <footer class="main-footer" role="contentinfo">
+        <div class="container footer-content">
+            <div>
+                <p><strong>GovDirect E-Governance Platform</strong> - Week 2 Execution Deliverable</p>
+                <p class="sub-text">Built for public accessibility, high performance, and responsive mobile design.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#services-catalog">Catalog</a>
+                <a href="#tracking-section">Tracker</a>
+                <a href="#design-system">Design System</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
